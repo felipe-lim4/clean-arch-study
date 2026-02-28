@@ -10,24 +10,24 @@ public class Document {
 
 
     public Document(UUID id, String title, String content) {
-        validate();
+        validate(title, content);
         this.id = id;
         this.title = title;
         this.content = content;
     }
 
     public Document(String title, String content) {
-        validate();
+        validate(title, content);
         this.id = UUID.randomUUID();
         this.title = title;
         this.content = content;
     }
 
-    private void validate() {
-        if (title == null || title.isEmpty()) {
+    private void validate(String title, String content) {
+        if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Titulo não pode ser nulo ou vazio");
         }
-        if (content == null || content.isEmpty()) {
+        if (content == null || content.isBlank()) {
             throw new IllegalArgumentException("Conteúdo não pode ser nulo ou vazio");
         }
     }
