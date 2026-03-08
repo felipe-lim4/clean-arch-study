@@ -30,11 +30,17 @@ public class DocumentController {
         try{
             inputStream = file.getInputStream();
         }catch(IOException e){
+            System.out.println(e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
 
-        Document document = documentCreateService.execute(inputStream, fileName);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ResDocumentDto(document.getTitle(), document.getContent()));
+        try{
+            Document document = documentCreateService.execute(inputStream, fileName);
+            return ResponseEntity.status(HttpStatus.CREATED).body(new ResDocumentDto(document.getTitle(), document.getContent()));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
+
 }
