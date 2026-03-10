@@ -7,5 +7,4 @@ import java.util.UUID;
 
 public interface DocumentJpaRepository extends JpaRepository<DocumentJpa, UUID> {
 
-    
 }
